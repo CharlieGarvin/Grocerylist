@@ -1,0 +1,38 @@
+/*
+Title:Items class of grocery billing system
+Authors:Taylor Coronel, Ricky Medina, Angel Rodiguez, Charles Garvin
+Emails:tcorone1@bruinmail.slcc.edu
+date:11/6/23
+Version 1
+
+*/
+public class GroceryItems{
+   //fields
+   private int quantity = 0;
+   public String[] groceryName =  new String[] {"Bananas","Gallon of Milk","Eggs", "Bread",
+   "Butter", "Bacon","Yogurt","Box of cereal","Tuna","Cheese"};
+   
+   public double[] groceryPrice = new double[]{1.79,3.89,4.50, 2.99, 1.20,7.89, 3.60, 2.40, 0.99, 5.50};
+    
+   
+   //method to print the list of items with their price
+   public void printList(){
+      for(int i = 0; i<10; i++){
+         System.out.printf("%d. %s ($%.2f)%n",(i+1), groceryName[i], groceryPrice[i]);
+      }
+   }
+   
+   //constructor AddToCart. This will allow the user to select an item from the main list
+   //and add it to their own list. They will choose the item and the quantity and it will create an object with 
+   //that item, its price, and how many of that item they want
+   
+   public AddToCart(int name, int q){
+      groceryName = groceryName[name - 1];
+      groceryPrice = groceryPrice[name - 1];
+      quantity = q;
+   }
+   
+   
+
+
+}
