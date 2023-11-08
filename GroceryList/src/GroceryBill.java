@@ -104,11 +104,21 @@ public class GroceryBill {
             }
             break;
          case 3: // Calculate the total & and display all items
+      //  get cart quantity from cartQuantity array to display
+         int itemQuantity = 0;
+      // get item cost from itemCost array  
+         double itemCost = 0;
+      // get and display total amount of items in cart
+         int itemTotal = 0;
+      // 3% tax plus total cost 
+         double tax = .03;
+         double totalCost = (totalCost * tax) + totalCost;
             // put methods to display:
                // The quanity of each item
                // The cost of the quanity for each item
                // The total amount of items
                // The total cost + tax
+               System.out.printf("The total cost plus tax is ", totalCost * tax);
             break;
          case 4: // End/Exit program
             System.out.println("Goodbye");
