@@ -15,12 +15,18 @@ public class GroceryItems{
    
    public double[] groceryPrice = new double[]{1.79,3.89,4.50, 2.99, 1.20,7.89, 3.60, 2.40, 0.99, 5.50};
    public ArrayList <String> userCart = new ArrayList<String>();
+   public double userTotalPrice = 0.0;
    
    //method to print the list of items with their price
    public void printList(){
       for(int i = 0; i<10; i++){
-         System.out.printf("%d. %s ($%.2f)%n",(i+1), groceryName[i], groceryPrice[i]);
-        
+         System.out.printf("%d. %s ($%.2f)%n",(i+1), groceryName[i], groceryPrice[i]); 
+      }
+   }
+   
+   public void printUserCart(){
+      for (int i = 0;i < userCart.size;++i){
+         System.out.println(userCart.get(i));
       }
    }
    
@@ -41,6 +47,7 @@ public class GroceryItems{
       quantity = q;
       System.out.printf("%s (%d)---------------%.2f%n", getName(addChoice), quantity, getPrice(addChoice)*quantity);
       userCart.add(getName(addChoice) + " (" + quantity + ")" + "----------" + getPrice(addChoice)*quantity);
+      userTotalPrice = userTotalPrice + (getPrice(addChoice)*quantity);
    }
    
    
