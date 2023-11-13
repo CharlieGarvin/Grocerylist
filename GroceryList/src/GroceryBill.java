@@ -9,14 +9,11 @@ Program Description: Our program will take in user input to choose from a list o
 Version: version-1
 Date: 11/06/2023
 ******************************************************************************************************************************************************/
-import java.util.*;
+import java.util.Scanner;
 
 public class GroceryBill {
    public static void main(String[]args) {
       Scanner scnr = new Scanner(System.in);
-      int quantity;
-      
-
       
       // might want to make all of these print outs into a method for every time the user decides to back in and out of each menu
       System.out.println("Choose an option to continue with your Grocery List");
@@ -26,70 +23,36 @@ public class GroceryBill {
       System.out.println("4. Exit");
       
       // reads user input for menu choice
-      System.out.print("Enter option: ");
       int menuChoice = scnr.nextInt();
       switch (menuChoice) {
          // Displays the main menu options
          case 1: // Add  item to the Grocery List
             // this method prints the list of items and each list item prices
-            GroceryItems list = new GroceryItems();
-            list.printList();
-            System.out.print("Choose an item to add to your list: ");
+            // printList();
             
             // reads the user input for which item they have selected
             int addChoice = scnr.nextInt();
             
             switch (addChoice) {
                case 1: // Add Bananas
-                  System.out.print("How many of this item do you want?");
-                  quantity = scnr.nextInt();
-                  list.AddToCart(1, quantity);
                   break;
                case 2: // Add Gallon of Milk
-                  System.out.print("How many of this item do you want?");
-                  quantity = scnr.nextInt();
-                  list.AddToCart(2, quantity);
-                  System.out.println(list.userCart.get(0));
                   break;
-               case 3:
-                  System.out.print("How many of this item do you want?");
-                  quantity = scnr.nextInt();
-                  list.AddToCart(3, quantity);
+               case 3: // Add Eggs
                   break;
                case 4: // Add Bread
-                  System.out.print("How many of this item do you want?");
-                  quantity = scnr.nextInt();
-                  list.AddToCart(4, quantity);
                   break;
                case 5: // Add Butter
-                  System.out.print("How many of this item do you want?");
-                  quantity = scnr.nextInt();
-                  list.AddToCart(5, quantity);
                   break;
                case 6: // Add Bacon
-                  System.out.print("How many of this item do you want?");
-                  quantity = scnr.nextInt();
-                  list.AddToCart(6, quantity);
                   break;
                case 7: // Add Yogurt
-                  System.out.print("How many of this item do you want?");
-                  quantity = scnr.nextInt();
-                  list.AddToCart(7, quantity);
                   break;
                case 8: // Add Box of Cereal
-                  System.out.print("How many of this item do you want?");
-                  quantity = scnr.nextInt();
-                  list.AddToCart(8, quantity);
                   break;
                case 9: // Add Tuna
-                  System.out.print("How many of this item do you want?");
-                  quantity = scnr.nextInt();
-                  list.AddToCart(9, quantity);
                   break;
                case 10: // Add Cheese
-                  System.out.print("How many of this item do you want?");
-                  quantity = scnr.nextInt();
-                  list.AddToCart(10, quantity);
                   break;
                case 0: // Exit
                   // Sends user back to the previous main menu
@@ -101,51 +64,54 @@ public class GroceryBill {
                   break;
             }
             break;
-         case 2: // Remove item from the Grocery List
-            // Prints the quanity for each item and allows the user to remove items from their list
-            // printUserList();
-            
-            // remove item from the given options
-            //reads the item choice the user has select
-            int removeChoice = scnr.nextInt();
-            
-            switch (removeChoice) {
-               case 1: // Remove Bananas
-                  break;
-               case 2: // Remove Gallon of Milk
-                  break;
-               case 3: // Remove Eggs
-                  break;
-               case 4: // Remove Bread
-                  break;
-               case 5: // Remove Butter
-                  break;
-               case 6: // Remove Bacon
-                  break;
-               case 7: // Remove Yogurt
-                  break;
-               case 8: // Remove Box of Cereal
-                  break;
-               case 9: // Remove Tuna
-                  break;
-               case 10: // Remove Cheese
-                  break;
-               case 0: // Exit
-                  // Sends user back to the previous main menu
-                  break;
-               default:
-                  // if the user enters an invalid response
-                  // maybe use an if statement to show this message if the user enters invalid choice
-                  System.out.println("Invalid option. Please try again.");
-                  break;
+         case 2:System.out.println("Which items would you like to remove?");
+                    System.out.println("You have:");
+                    int i = 1;
+                    for (String item : itemCount.keySet()) {
+                        int count = itemCount.get(item);
+                        if (count > 0) {
+                            System.out.println(i + ". " + item + " (" + count + ")");
+                            i++;
+                        }
+                    }
+                    System.out.println("0. Exit");
+                    System.out.print("User: ");
+                    int removeItemOption = scanner.nextInt();
+                    if (removeItemOption == 0) {
+                        break;
+                    }
+
+                    String itemToRemove = (String) itemCount.keySet().toArray()[removeItemOption - 1];
+                    System.out.print("How many would you like to remove? ");
+                    int removeQuantity = scanner.nextInt();
+                    int currentQuantity = itemCount.get(itemToRemove);
+
+                    if (removeQuantity > currentQuantity) {
+                        System.out.println("You don't have that many " + itemToRemove + " to remove.");
+                    } else {
+                        itemCount.put(itemToRemove, currentQuantity - removeQuantity);
+                        totalCost -= items.get(itemToRemove) * removeQuantity;
+                        System.out.println("You have " + itemToRemove + " (" + (currentQuantity - removeQuantity) + ") left");
+                    }
+                    break;
             }
             break;
          case 3: // Calculate the total & and display all items
+      //  get cart quantity from cartQuantity array to display
+         int itemQuantity = 0;
+      // get item cost from itemCost array  
+         double itemCost = 0;
+      // get and display total amount of items in cart
+         int itemTotal = 0;
+      // 3% tax plus total cost 
+         double tax = .03;
+         double totalCost = (totalCost * tax) + totalCost;
             // put methods to display:
                // The quanity of each item
                // The cost of the quanity for each item
                // The total amount of items
                // The total cost + tax
+               System.out.printf("The total cost plus tax is ", totalCost * tax);
             break;
          case 4: // End/Exit program
             System.out.println("Goodbye");
