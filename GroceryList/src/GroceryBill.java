@@ -16,6 +16,8 @@ public class GroceryBill {
       Scanner scnr = new Scanner(System.in);
       int quantity;
       int menuChoice;
+      GroceryItems list = new GroceryItems();
+
       
       System.out.println("****************************");
       System.out.println("* Welcome To The Main Menu *");
@@ -43,7 +45,7 @@ public class GroceryBill {
                               
                do {
                   // this method prints the list of items and each list item prices
-                  GroceryItems list = new GroceryItems();
+                 
                   list.printList();
                   System.out.println("0. Exit to Main Menu");
                   System.out.print("Choose an item to add to your list: ");
@@ -125,12 +127,31 @@ public class GroceryBill {
                System.out.println("****************************");
                System.out.println("* Now At The Removing Menu *");
                System.out.println("****************************\n");
+               int removeChoice = 1;
+               while(removeChoice != 0){
+                  System.out.println("You have:");
+                  list.printUserCart();
+                  System.out.print("Which items would you like to remove: ");
+                  removeChoice = scnr.nextInt();
+                  list.userCart.remove(removeChoice-1);
+                  System.out.println("Item removed");
+                  System.out.print(" Enter 0 for main menu 2 to continue: ");
+                  removeChoice = scnr.nextInt(); 
+               }
+                 System.out.println("************************");
+                 System.out.println("* Now At The Main Menu *");
+                 System.out.println("************************\n");
+
+              break;
+              
             
-               break;
             case 3: // Calculate the total & and display all items
                System.out.println("*******************");
                System.out.println("* Displaying Cart *");
                System.out.println("*******************\n");
+               list.printUserCart();
+               System.out.println("total---------------");
+               System.out.println("total plus tax---------------");
                // put methods to display:
                   // The quanity of each item
                   // The cost of the quanity for each item

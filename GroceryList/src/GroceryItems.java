@@ -25,8 +25,8 @@ public class GroceryItems{
    }
    
    public void printUserCart(){
-      for (int i = 0;i < userCart.size;++i){
-         System.out.println(userCart.get(i));
+      for (int i = 0;i < userCart.size();++i){
+         System.out.println((i + 1) + ". " + userCart.get(i));
       }
    }
    
@@ -45,11 +45,12 @@ public class GroceryItems{
    
    public void AddToCart(int addChoice, int q){
       quantity = q;
-      System.out.printf("%s (%d)---------------%.2f%n", getName(addChoice), quantity, getPrice(addChoice)*quantity);
-      userCart.add(getName(addChoice) + " (" + quantity + ")" + "----------" + getPrice(addChoice)*quantity);
+      System.out.printf("%s (%d)--------------- $%.2f%n", getName(addChoice), quantity, getPrice(addChoice)*quantity);
+      userCart.add(getName(addChoice) + " (" + quantity + ")" + "--------------- $" + getPrice(addChoice)*quantity);
       userTotalPrice = userTotalPrice + (getPrice(addChoice)*quantity);
    }
    
    
    
  }
+ 
