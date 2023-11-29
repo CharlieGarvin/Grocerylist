@@ -25,6 +25,8 @@ public class GroceryBill {
       System.out.println("also able to remove items from your list by choosing the item and then entering what quantity");
       System.out.println("you would like to be removed. When you are finished shopping you can then head to the main");
       System.out.println("menu to checkout and display your total. This will also print out a list of your items and quantities.");
+      System.out.println("Designed by: Taylor Coronel, Ricky Medina, Angel Rodgriguez, Charlie Garvin");
+
 
       System.out.println("****************************\n");
       
