@@ -18,6 +18,15 @@ public class GroceryBill {
       int menuChoice;
       GroceryItems list = new GroceryItems();
 
+
+      System.out.println("****************************");
+      System.out.println("Welcome to the Grocery Program. You will be able to shop from a set list of items.");
+      System.out.println("You will be able to choose an item and the quantity of the item you want. You are");
+      System.out.println("also able to remove items from your list by choosing the item and then entering what quantity");
+      System.out.println("you would like to be removed. When you are finished shopping you can then head to the main");
+      System.out.println("menu to checkout and display your total. This will also print out a list of your items and quantities.");
+
+      System.out.println("****************************\n");
       
       System.out.println("****************************");
       System.out.println("* Welcome To The Main Menu *");
@@ -206,14 +215,14 @@ public class GroceryBill {
                System.out.println("/n*******************");
                System.out.println("* Displaying Cart *");
                System.out.println("*******************\n");
-               list.printUserCart();
+                list.printUserCart();
                double userTotalPrice = 0;
                for(int i= 0; i < list.userTotal.size();++i){
-                 userTotalPrice = userTotalPrice + list.userTotal.get(i);
+                  userTotalPrice = userTotalPrice + list.userTotal.get(i);
                }
                System.out.printf("total---------------$ %.2f%n", userTotalPrice );
                System.out.printf("total plus tax---------------$ %.2f%n",(userTotalPrice +( userTotalPrice * 0.06)));
-               System.out.println("/n************************");
+               System.out.println("************************");
                System.out.println("* Now At The Main Menu *");
                System.out.println("************************\n");
 

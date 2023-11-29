@@ -46,7 +46,7 @@ public class GroceryItems{
    
    public void AddToCart(int addChoice, int q){
       quantity = q;
-      System.out.printf("%s (%d)--------------- $%.2f%n", getName(addChoice), quantity, getPrice(addChoice)*quantity);
+      System.out.printf("%s (%d)---------------%.2f%n", getName(addChoice), quantity, getPrice(addChoice)*quantity);
       userCart.add(getName(addChoice) + " (" + quantity + ")" + "--------------- $" + getPrice(addChoice)*quantity);
       userTotal.add(getPrice(addChoice)*quantity);
    }
