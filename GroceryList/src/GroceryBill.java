@@ -1,7 +1,7 @@
 /******************************************************************************************************************************************************
 Title: Grocery Bill System
 Authors: Taylor Coronel, Ricky Medina, Angel Rodgriguez, Charles Garvin
-Emails: rmedin41@bruinmail.slcc.edu
+Emails: rmedin41@bruinmail.slcc.edu, tcorone1@bruinmail.slcc.edu,
 Program Description: Our program will take in user input to choose from a list of items that a user wants to buy along with their price.
                      The user will be able to add any number of items or to take off items from their list.
                      There will be an option to display their list of items and calculate the total and also an option to exit when the user is ready. 
@@ -18,17 +18,6 @@ public class GroceryBill {
       int menuChoice;
       GroceryItems list = new GroceryItems();
 
-
-      System.out.println("****************************");
-      System.out.println("Welcome to the Grocery Program. You will be able to shop from a set list of items.");
-      System.out.println("You will be able to choose an item and the quantity of the item you want. You are");
-      System.out.println("also able to remove items from your list by choosing the item and then entering what quantity");
-      System.out.println("you would like to be removed. When you are finished shopping you can then head to the main");
-      System.out.println("menu to checkout and display your total. This will also print out a list of your items and quantities.");
-      System.out.println("Designed by: Taylor Coronel, Ricky Medina, Angel Rodgriguez, Charlie Garvin");
-
-
-      System.out.println("****************************\n");
       
       System.out.println("****************************");
       System.out.println("* Welcome To The Main Menu *");
@@ -78,9 +67,7 @@ public class GroceryBill {
                      case 2: // Add Gallon of Milk
                         System.out.print("How many of this item do you want? ");
                         quantity = scnr.nextInt();
-                        list.AddToCart(2, quantity);
-                        System.out.println(list.userCart.get(0));
-                        
+                        list.AddToCart(2, quantity);                       
                         System.out.println("");
                         System.out.println("****************************");
                         System.out.println("* Choose Your Next Option. *");
@@ -187,26 +174,38 @@ public class GroceryBill {
                System.out.println("****************************");
                System.out.println("* Now At The Removing Menu *");
                System.out.println("****************************\n");
-               
+               int removeChoice = 1;
+               int removeQuantity= 0;
+               int originalIndex=  0;
+               while(removeChoice != 0){
+
                if(list.userCart.size() < 1){
                   System.out.println("*************************************");
                   System.out.println("* Invalid option. Please try again. *");
-                  System.out.println("*************************************\n");
-                  System.out.println(" You don't have anything in your cart");
+                  System.out.println("*************************************");
+                  System.out.println(" You don't have anything in your cart\n");
+                  break;
                }else{
-               int removeChoice = 1;
-               while(removeChoice != 0){
                   System.out.println("You have:");
                   list.printUserCart();
                   System.out.print("Which items would you like to remove: ");
                   removeChoice = scnr.nextInt();
-                  list.userCart.remove(removeChoice-1);
-                  list.userTotal.remove(removeChoice-1);
-                  System.out.println("Item removed");
+                  System.out.print("What is the new quantity you want of this Item:");
+                  removeQuantity= scnr.nextInt();
+                  if(removeQuantity > 0){
+                     originalIndex= list.getRemoveItemIndex(removeChoice - 1);
+                     list.AddToCart((originalIndex+1), removeQuantity);
+                     list.userCart.remove(removeChoice-1);
+                     list.userTotal.remove(removeChoice-1);                     
+                  }else{
+                     list.userCart.remove(removeChoice-1);
+                     list.userTotal.remove(removeChoice-1);
+                  }
+                  System.out.println("Item updated");
                   System.out.print(" Enter 0 for main menu 1 to continue: ");
                   removeChoice = scnr.nextInt(); 
                }
-                 System.out.println("/n************************");
+                 System.out.println("\n************************");
                  System.out.println("* Now At The Main Menu *");
                  System.out.println("************************\n");
               }
@@ -214,31 +213,31 @@ public class GroceryBill {
             case 3: // Calculate the total & and display all items
                   // The cost of the quanity for each item
                   // The total cost + tax
-               System.out.println("/n*******************");
+               System.out.println("\n*******************");
                System.out.println("* Displaying Cart *");
                System.out.println("*******************\n");
-                list.printUserCart();
+               list.printUserCart();
                double userTotalPrice = 0;
                for(int i= 0; i < list.userTotal.size();++i){
-                  userTotalPrice = userTotalPrice + list.userTotal.get(i);
+                 userTotalPrice = userTotalPrice + list.userTotal.get(i);
                }
                System.out.printf("total---------------$ %.2f%n", userTotalPrice );
                System.out.printf("total plus tax---------------$ %.2f%n",(userTotalPrice +( userTotalPrice * 0.06)));
-               System.out.println("************************");
+               System.out.println("\n************************");
                System.out.println("* Now At The Main Menu *");
                System.out.println("************************\n");
 
                   
                break;
             case 4:
-               System.out.println("/n************");
+               System.out.println("\n************");
                System.out.println("* Goodbye! *");
                System.out.println("************\n");
                break;
             default:
                // if the user enters an invalid option
                if (menuChoice <= 0 || menuChoice > 4) {
-                  System.out.println("/n*************************************");
+                  System.out.println("\n*************************************");
                   System.out.println("* Invalid option. Please try again. *");
                   System.out.println("*************************************\n");
                }
